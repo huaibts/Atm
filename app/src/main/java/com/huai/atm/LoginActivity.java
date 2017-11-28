@@ -6,13 +6,6 @@ import android.view.View;
 
 public class LoginActivity extends AppCompatActivity {
 
-    public void login (View view){
-
-    }
-    public void cancel (View view){
-
-    }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,4 +13,11 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
     }
+    public void login (View view){
+
+    }
+    public void cancel (View view){
+
+    }
+
 }
