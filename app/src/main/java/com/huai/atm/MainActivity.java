@@ -17,13 +17,10 @@ public class MainActivity extends AppCompatActivity {
     private final static int REQUEST_LOGIN = 102;
     private final static int REQUEST_USERINFO = 105;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        startActivity(new Intent(this, UserInfoActivity.class));
         if(!logon){
             Intent intent = new Intent(this, LoginActivity.class);
          //   startActivity(intent);
@@ -37,8 +34,10 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent i = new Intent(MainActivity.this, UserInfoActivity.class);
+                startActivityForResult(i, REQUEST_USERINFO);
+        //        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                //               .setAction("Action", null).show();
             }
         });
     }
@@ -50,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK){
                 String userid = data.getStringExtra("LOGIN_USERID");
                 String passwd = data.getStringExtra("LOGIN_PASSWD");
-                Toast.makeText(this, "Login userid :"+userid, Toast.LENGTH_LONG).show();
+       //         Toast.makeText(this, "Login userid :"+userid, Toast.LENGTH_LONG).show();
                 getSharedPreferences("atm", MODE_PRIVATE)
                         .edit()
                         .putString("USERID", userid)
@@ -64,8 +63,13 @@ public class MainActivity extends AppCompatActivity {
                 if (resultCode ==RESULT_OK){
                     String nickname = data.getStringExtra("EXTRA_NICKNAME");
                     String phone = data.getStringExtra("EXTRA_PHONE");
-                    Toast.makeText(this, "Nickname:"+nickname, Toast.LENGTH_LONG).show();
-                    Toast.makeText(this, "Phone:"+phone, Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "Nickname: "+nickname, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Phone: "+phone, Toast.LENGTH_SHORT).show();
+                    getSharedPreferences("userinfo", MODE_PRIVATE)
+                            .edit()
+                            .putString("NICKNAME", nickname)
+                            .putString("PHONE", phone)
+                            .apply();
                 }
                 break;
         }
