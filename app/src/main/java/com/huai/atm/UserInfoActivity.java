@@ -1,5 +1,6 @@
 package com.huai.atm;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -50,5 +51,10 @@ public class UserInfoActivity extends AppCompatActivity {
         setResult(RESULT_OK, getIntent());
         finish();
 
+    }
+    public void addr(View view){
+        //Intent intent = new Intent(this,AddrActivity.class);
+        Intent intent = new Intent(this,CityActivity.class);
+        startActivity(intent);
     }
 }
