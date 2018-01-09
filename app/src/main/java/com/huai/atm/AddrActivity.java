@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Switch;
 
 public class AddrActivity extends AppCompatActivity {
 
@@ -24,11 +25,16 @@ public class AddrActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
                 String[] data = null;
-                if (position == 0){
-                    data = new String[]{"1","2","3"};
-                }
-                if (position == 1){
-                    data = new String[]{"4","5","6"};
+                switch(position){
+                    case 0:
+                        data = new String[]{"1","2","3"};
+                        break;
+                    case 1:
+                        data = new String[]{"4","5","6"};
+                        break;
+                    case 2:
+                        data = new String[]{"7","8","9"};
+                        break;
                 }
                 ArrayAdapter adapter1 = new ArrayAdapter(
                         AddrActivity.this, android.R.layout.simple_list_item_1,

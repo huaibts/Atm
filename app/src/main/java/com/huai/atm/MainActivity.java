@@ -10,6 +10,9 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -41,6 +44,23 @@ public class MainActivity extends AppCompatActivity {
                 //               .setAction("Action", null).show();
             }
         });
+        //ListView
+        ListView listView = (ListView) findViewById(R.id.list);
+        final String[] data = {"AAA", "BBB", "CCC"};
+        ArrayAdapter adapter = new ArrayAdapter(this,
+                android.R.layout.simple_list_item_1, data);
+        listView.setAdapter(adapter);
+        listView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -50,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK){
                 String userid = data.getStringExtra("LOGIN_USERID");
                 String passwd = data.getStringExtra("LOGIN_PASSWD");
-       //         Toast.makeText(this, "Login userid :"+userid, Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Login userid :"+userid, Toast.LENGTH_LONG).show();
                 getSharedPreferences("atm", MODE_PRIVATE)
                         .edit()
                         .putString("USERID", userid)

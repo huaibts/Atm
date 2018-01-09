@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class CityActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
@@ -28,5 +29,7 @@ public class CityActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
         Log.d(TAG, "onItemClick: " + position + "/" + cities[position]);
+        TextView tv = (TextView) view;
+        tv.setText(tv.getText() + "*");
     }
 }
